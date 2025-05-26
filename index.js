@@ -12,7 +12,7 @@ app.post("/shopify-webhook", async (req, res) => {
     const imageUrl = checkout.line_items[0]?.image || "https://your-default.jpg";
 
     const payload = {
-        apiKey: "your-api-key",
+        apiKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MjhiODEzMzhmMWZlMGMwMDBiYWNiNSIsIm5hbWUiOiJrYXVzaGFseWEgYXJ0IGpld2VsbGVyeSIsImFwcE5hbWUiOiJBaVNlbnN5IiwiY2xpZW50SWQiOiI2ODI4YjgxMzM4ZjFmZTBjMDAwYmFjYWQiLCJhY3RpdmVQbGFuIjoiRlJFRV9GT1JFVkVSIiwiaWF0IjoxNzQ3NDk5MDI3fQ.x9DHjQf5QO__7qkFt2EHluwqruyyqVbRWk7XpI3NLCI",
         campaignName: "Abandoned Checkout",
         destination: `91${checkout.customer.phone}`,
         userName: "Shubham Patel",
