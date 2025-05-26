@@ -6,13 +6,12 @@ app.use(express.json());
 
 app.post("/shopify-webhook", async (req, res) => {
   const checkout = req.body;
-  console.log(checkout);
-  const name = checkout.customer?.first_name || "Customer";
+  const name = checkout.shipping_address?.first_name || "Customer";
   const amount = checkout.total_price || "0";
-  const productUrl = `https://${checkout.shopify_domain}/checkout/${checkout.token}`;
-  const imageUrl = checkout.line_items[0]?.image || "https://your-default.jpg";
+  const productUrl = checkout.abandoned_checkout_url;
+  const imageUrl = checkout.line_items[0]?.image;
 
-  let rawPhone = checkout.customer?.phone || "";
+  let rawPhone = checkout.shipping_address?.phone || "";
 
   // Remove all non-digit characters (like "+", spaces, dashes)
   let cleanedPhone = rawPhone.replace(/\D/g, "");
