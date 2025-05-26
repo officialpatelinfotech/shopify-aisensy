@@ -9,7 +9,19 @@ app.post("/shopify-webhook", async (req, res) => {
   const name = checkout.shipping_address?.first_name || "Customer";
   const amount = checkout.total_price || "0";
   const productUrl = checkout.abandoned_checkout_url;
-  const imageUrl = checkout.line_items[0]?.image;
+
+  //   const variantId = checkout.line_items[0]?.variant_id;
+
+  // const shopifyImageURL = await axios.get(`https://${SHOP_DOMAIN}/admin/api/2023-07/variants/${variantId}.json`, {
+  //     headers: {
+  //         "X-Shopify-Access-Token": SHOPIFY_ADMIN_API_TOKEN
+  //     }
+  // });
+
+  // const imageUrl = shopifyImageURL.data?.variant?.image_id
+  //   ? `https://${SHOP_DOMAIN}/admin/api/2023-07/products/${shopifyImageURL.data.variant.product_id}/images/${shopifyImageURL.data.variant.image_id}.json`
+  //   : "https://your-default.jpg";
+  checkout.line_items[0]?.properties?._image_url || "https://your-default.jpg";
 
   let rawPhone = checkout.shipping_address?.phone || "";
 
