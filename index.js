@@ -6,6 +6,7 @@ app.use(express.json());
 
 app.post("/shopify-webhook", async (req, res) => {
   const checkout = req.body;
+  console.log(checkout);
   const name = checkout.customer?.first_name || "Customer";
   const amount = checkout.total_price || "0";
   const productUrl = `https://${checkout.shopify_domain}/checkout/${checkout.token}`;
